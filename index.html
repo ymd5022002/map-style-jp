@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>みんなの地図スタイル</title>
+
+<style>
+body{
+    background-color: #FCE3CD; /*背景色*/
+    color: #663236; /*文字色*/
+}
+</style>
+
+</head>
+<body>
+
+  <!-- クリックしたら直接ダウンロードする書き方はこちらを
+参照した。 https://atmarkit.itmedia.co.jp/ait/articles/1603/30/news026.html　　-->
+
+<h1>みんなの地図スタイル</h1>
+地図スタイルファイル / 地図キャンバスURLをシェアしよう！<br>
+<br>
+素敵なデザインマップの作成の際に使う、地図スタイルファイルや<br>
+地図キャンバスURLをシェアするためのスペースです。<br>
+地理院地図ベクターを用いたデザインマップの作り方は<br>
+<b><a href="./220221_デザインマップの作り方.pdf" target="_blank">こちら</a></b>をご欄ください。<br>
+
+<h2>●<a href="https://maps.gsi.go.jp/vector/" target="_blank">地理院地図ベクター</a> 用</h2>
+<h3>地図スタイルファイル</h3>
+<p>1. <a href="./地理院地図ベクター用_地図ラー_緑スタイル.json" download="地理院地図ベクター用_地図ラー_緑スタイル.json"
+   onclick="javascript: downloadFile('./地理院地図ベクター用_地図ラー_緑スタイル.json', '地理院地図ベクター用_地図ラー_緑スタイル.json'); return false;"
+   >地理院地図ベクター用_地図ラー_緑スタイル.json</a><br>
+   　　(<a href="http://chiba-chizu.com/" target="_blank">地図ラーの会</a>　まち歩きマップの配色)
+</p>
+<br><br>
+
+<h3>地図キャンバスURL (背景色用：自分で作る色別標高図) </h3>
+<p>1. <font color=”#7EE7A4”>■</font>#7EE7A4　<a href="https://maps.gsi.go.jp/vector/#15.521/35.553567/140.119424/&ls=relief_free%2C0.56&disp=1&d=l&reliefdata=0-32G0000FFG2328G7EE7A4GGFF4400
+  " target="_blank" >地理院地図ベクター用_地図ラー_緑スタイル</a><br>
+  　　(<a href="http://chiba-chizu.com/" target="_blank">地図ラーの会</a>　まち歩きマップの配色)
+</p>
+<br><br>
+
+<h2>●<a href="https://www.mapbox.com/" target="_blank">mapbox</a> 用(準備中)</h2>
+
+<br>
+   <hr size="1">
+   &copy;<a href="https://ymd5022002.github.io/map-art-jp/" target="_blank">地図アート研究所</a> 2022　<small>(MapArtResearch)</small>
+   <!-- ｜<a href="https://github.com/ymd5022002/map-art-jp/blob/gh-pages/ice_converter/index.html" target="_blank">
+     <small>ソース</small>
+   </a> -->
+   <br>
+
+<script>
+
+function downloadFile(url, filename) {
+  "use strict";
+
+  // XMLHttpRequestオブジェクトを作成する
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.responseType = "blob"; // Blobオブジェクトとしてダウンロードする
+  xhr.onload = function (oEvent) {
+    // ダウンロード完了後の処理を定義する
+    var blob = xhr.response;
+    if (window.navigator.msSaveBlob) {
+      // IEとEdge
+      window.navigator.msSaveBlob(blob, filename);
+    }
+    else {
+      // それ以外のブラウザ
+      // Blobオブジェクトを指すURLオブジェクトを作る
+      var objectURL = window.URL.createObjectURL(blob);
+      // リンク（<a>要素）を生成し、JavaScriptからクリックする
+      var link = document.createElement("a");
+      document.body.appendChild(link);
+      link.href = objectURL;
+      link.download = filename;
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+  // XMLHttpRequestオブジェクトの通信を開始する
+  xhr.send();
+}
+
+</script>
+</body>
+</html>
